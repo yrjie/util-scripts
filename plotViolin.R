@@ -10,6 +10,7 @@ remove_outliers <- function(x, na.rm = TRUE, ...) {
   y <- x
   y[x < (qnt[1] - H)] <- NA
   y[x > (qnt[2] + H)] <- NA
+  y =y[!is.na(y)]
   y
 }
 
@@ -31,8 +32,10 @@ while (length(line<-readLines(fi,n=1,warn=FALSE))>0){
 	dat[cname]=list(remove_outliers(vec[[1]]))
 	print(summary(dat[[cname]]))
 }
-print(names(dat))
+nameVector=names(dat)
+names(dat)[1]='x'
+print(nameVector)
 png(outfile)
 #boxplot(dat,main=name,range=0)
-vioplot(c(123,111,2,1,1,1,111,111),c(121,213,16,164),col="cyan",na.rm=TRUE)
+do.call(vioplot,c(dat,list(names=nameVector,col="cyan")))
 dev.off()
