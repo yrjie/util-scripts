@@ -3,7 +3,7 @@ if (length(args)<9){
     print("Usage: R --no-save --slave --args n1 n12 n2 name1 name2 / n1 n2 n3 n12 n13 n23 n123 name1 name2 name3 <plotVenn.r")
     q()
 }
-filename='ven1.png'
+filename='temp.png'
 #if (length(args)>=10)
 #	filename=args[10]
 require(VennDiagram)

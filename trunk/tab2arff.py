@@ -2,11 +2,11 @@
 
 import sys,os
 
-if len(sys.argv)<3:
-    print 'python tab2arff.py positive negative'
+if len(sys.argv)<4:
+    print 'python tab2arff.py positive negative name'
     exit(1)
 
-print '@relation DNaseSig\n'
+print '@relation '+sys.argv[3]+'\n'
 
 fi=open(sys.argv[1],'r')
 cnt=1

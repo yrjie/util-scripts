@@ -6,7 +6,7 @@ q()
 
 remove_outliers <- function(x, na.rm = TRUE, ...) {
   qnt <- quantile(x, probs=c(.25, .75), na.rm = na.rm, ...)
-  H <- 2 * IQR(x, na.rm = na.rm)
+  H <- 5 * IQR(x, na.rm = na.rm)
   y <- x
   y[x < (qnt[1] - H)] <- NA
   y[x > (qnt[2] + H)] <- NA
@@ -31,7 +31,7 @@ while (length(line<-readLines(fi,n=1,warn=FALSE))>0){
 	print(summary(dat[[cname]]))
 }
 print(names(dat))
-png(outfile)
+png(outfile, width=max(450,120*length(dat)), height=max(450,120*length(dat)),units="px")
 #boxplot(dat,main=name,range=0)
 boxplot(dat,main=name)
 dev.off()
