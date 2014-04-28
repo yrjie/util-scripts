@@ -28,6 +28,8 @@ png(outfile, width=max(1200,30*dDat[2]), height=max(1200,30*dDat[2]))
 sc="none"
 if ("rowNorm" %in% args)
 	sc="row"
-heatmap.2(dat, dendrogram="col", col=bluered(256), scale=sc, key=T, keysize=0.8, density.info="none", trace="none",cexCol=2.3, labRow=NA, margins=c(20,5),Rowv=FALSE)
+#heatmap.2(dat, dendrogram="col", col=bluered(256), scale=sc, key=T, keysize=0.8, density.info="none", trace="none",cexCol=2.3, labRow=NA, margins=c(20,5),Rowv=FALSE)
+heatmap.2(dat, dendrogram="row", col=bluered(256), scale=sc, key=T, keysize=0.8, density.info="none", trace="none",cexCol=2.3, labRow=NA, margins=c(20,5),Colv=FALSE)
+#heatmap.2(dat, dendrogram="none", col=bluered(256), scale=sc, key=T, keysize=0.8, density.info="none", trace="none",cexCol=2.3, labRow=NA, labCol=NA, margins=c(20,5),Colv=FALSE, Rowv=FALSE)
 #clustering: Colv Rowv
 dev.off()
