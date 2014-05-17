@@ -30,6 +30,7 @@ grid.draw(v1)
 	n123 = as.numeric(args[11]),
 	category = c(args[12], args[13], args[14]),
 	fill = c("blue", "red", "green"),
+	euler.d=TRUE,
 	scaled=TRUE,
 	cex=2,
 	cat.fontface=4,

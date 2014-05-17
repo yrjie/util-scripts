@@ -4,6 +4,7 @@ if (length(Args)<5){
 	q()
 }
 data <- read.table(Args[5], header=FALSE, sep ="\t")
-png(paste(gsub("\\$","_",Args[5]),".png",sep=""))
+#png(paste(gsub("\\$","_",Args[5]),".png",sep=""))
+png('temp.png')
 opar=par(ps=18)
 hist(data[,1],breaks=50,main="",col='red',xlab="x value", ylab="Counting")
