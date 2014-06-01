@@ -3,8 +3,20 @@ if (length(Args)<5){
 	print("Usage: R --no-save --slave --args infile")
 	q()
 }
+
+remove_outliers <- function(x, na.rm = TRUE, ...) {
+  qnt <- quantile(x, probs=c(.25, .75), na.rm = na.rm, ...)
+  H <- 5 * IQR(x, na.rm = na.rm)
+  y <- x
+  y[x < (qnt[1] - H)] <- NA
+  y[x > (qnt[2] + H)] <- NA
+  y
+}
+
 data <- read.table(Args[5], header=FALSE, sep ="\t")
+data=remove_outliers(data[,1])
+print(summary(data))
 #png(paste(gsub("\\$","_",Args[5]),".png",sep=""))
 png('temp.png')
 opar=par(ps=18)
-hist(data[,1],breaks=50,main="",col='red',xlab="x value", ylab="Counting")
+hist(data,breaks=50,main="",col='red',xlab="x value", ylab="Counting")
