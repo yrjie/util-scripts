@@ -4,9 +4,10 @@ then
     exit
 fi
 
+echo $1
 cp ~/*/*.sh ~/bin/backup/first/
-cp ~/*/*.py ~/bin/backup/first/
-cp ~/*/*.R ~/bin/backup/first/
+#cp ~/*/*.py ~/bin/backup/first/
+#cp ~/*/*.R ~/bin/backup/first/
 #find ~/ -name *.sh -path ~/bin -prune -o -exec cp {} ~/bin/backup/all/ \;
 #find ~/ -name *.py -path ~/bin -prune -o -exec cp {} ~/bin/backup/all/ \;
 #find ~/ -name *.R -path ~/bin -prune -o -exec cp {} ~/bin/backup/all/ \;
