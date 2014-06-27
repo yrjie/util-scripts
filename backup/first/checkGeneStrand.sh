@@ -4,10 +4,10 @@ then
     exit
 fi
 # $1 prefix
-closestBed -a $1_c1.bed -b data/knownGene.bed -t first |cut -f10|sort |uniq -c
-closestBed -a $1_c2.bed -b data/knownGene.bed -t first |cut -f10|sort |uniq -c
-closestBed -a $1_c3.bed -b data/knownGene.bed -t first |cut -f10|sort |uniq -c
-closestBed -a $1_c4.bed -b data/knownGene.bed -t first |cut -f10|sort |uniq -c
+closestBed -a $1_c1.bed -b ~/Faire/data/knownGene.bed -t first |cut -f10|sort |uniq -c
+closestBed -a $1_c2.bed -b ~/Faire/data/knownGene.bed -t first |cut -f10|sort |uniq -c
+closestBed -a $1_c3.bed -b ~/Faire/data/knownGene.bed -t first |cut -f10|sort |uniq -c
+closestBed -a $1_c4.bed -b ~/Faire/data/knownGene.bed -t first |cut -f10|sort |uniq -c
 #closestBed -a $1_c0.bed -b data/knownGene.bed -t first |cut -f12|sort -r|uniq -c
 #closestBed -a $1_c1.bed -b data/knownGene.bed -t first |cut -f12|sort -r|uniq -c
 #closestBed -a $1_c2.bed -b data/knownGene.bed -t first |cut -f12|sort -r|uniq -c

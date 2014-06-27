@@ -27,8 +27,8 @@ while (length(line<-readLines(fi,n=1,warn=FALSE))>0){
 	cname=vec[[1]][1]
 	vec=list(as.numeric(vec[[1]][2:lenv]))
 #	dat[cname]=vec
+	print(summary(vec[[1]]))
 	dat[cname]=list(remove_outliers(vec[[1]]))
-	print(summary(dat[[cname]]))
 }
 print(names(dat))
 png(outfile, width=max(450,120*length(dat)), height=max(450,120*length(dat)),units="px")
