@@ -14,8 +14,9 @@ remove_outliers <- function(x, na.rm = TRUE, ...) {
 }
 
 data <- read.table(Args[5], header=FALSE, sep ="\t")
-data=remove_outliers(data[,1])
+data=as.numeric(as.matrix(data))
 print(summary(data))
+data=remove_outliers(data)
 #png(paste(gsub("\\$","_",Args[5]),".png",sep=""))
 png('temp.png')
 opar=par(ps=18)
