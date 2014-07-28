@@ -5,11 +5,23 @@ if (length(Args)<6){
         q()
 }
 
-outfile="fit.png"
+outfile="temp.png"
 if (length(Args)>=7)
 #	outfile=paste(gsub(".",Args[7],"_"),".png",sep="")
 	outfile=Args[7]
-x=as.matrix(read.table(Args[5]))
+
+remove_outliers <- function(x, na.rm = TRUE, ...) {
+  qnt <- quantile(x, probs=c(.25, .75), na.rm = na.rm, ...)
+  H <- 5 * IQR(x, na.rm = na.rm)
+  y <- x
+  y[x < (qnt[1] - H)] <- qnt[1] - H
+  y[x > (qnt[2] + H)] <- qnt[2] + H
+  y
+}
+
+x=as.numeric(as.matrix(read.table(Args[5])))
+x=remove_outliers(x)
+
 type=Args[6]
 library(MASS)
 #x=rgamma(100,shape=3.5,scale=0.5)
@@ -19,7 +31,7 @@ library(MASS)
 fit=fitdistr(x,type)
 print(fit)
 
-h<-hist(x,breaks=15)
+h<-hist(x,breaks=20)
 xhist<-c(min(h$breaks),h$breaks)
 yhist<-c(0,h$density,0)
 xfit<-seq(min(x),max(x),length=100)

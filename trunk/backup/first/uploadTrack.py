@@ -1,5 +1,6 @@
 import sys,os
 import getpass
+from urllib import quote
 
 if len(sys.argv)<2:
     print 'Usage: python uploadTrack.py <cfg file> [create]'
@@ -30,6 +31,7 @@ for line in fi:
     temp=line.split('\t')
     file=temp[0]
     trkName=os.path.basename(temp[0]).replace('.','_')
+    trkName=quote(trkName)
     format=temp[1]
     asm=temp[2]
     lib=temp[3]
@@ -47,8 +49,8 @@ for line in fi:
     	driver='bigBed'
     else:
     	continue
-    #hook='http://biogpu.d1.comp.nus.edu.sg:8001/reqbin/?asm='+asm+'&lib='+lib+'&track='+trkName+'&shortLabel='+shortL+'&longLabel='+longL+'&user='+user+'&bcs='+bcs
     hook='http://biogpu.d1.comp.nus.edu.sg/basic2/reqbin/?asm='+asm+'&lib='+lib+'&track='+trkName+'&shortLabel='+shortL+'&longLabel='+longL+'&user='+user+'&bcs='+bcs+'&create='+create
+    #hook='http://biogpu.d1.comp.nus.edu.sg:8001/reqbin/?asm='+asm+'&lib='+lib+'&track='+trkName+'&shortLabel='+shortL+'&longLabel='+longL+'&user='+user+'&bcs='+bcs+'&create='+create
     if file.startswith('http') or file.startswith('ftp'):
 	if driver!='bigWig' and driver!='bigBed':
 	    raise Exception('only bigWig and bigBed are supported for url')

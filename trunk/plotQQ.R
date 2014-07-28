@@ -14,9 +14,9 @@ remove_outliers <- function(x, na.rm = TRUE, ...) {
 }
 
 data <- read.table(Args[5], header=FALSE, sep ="\t")
+print(summary(data[,1]))
 data=remove_outliers(data[,1])
 #data=data[,1]
-print(summary(data))
 #png(paste(gsub("\\$","_",Args[5]),".png",sep=""))
 png('temp.png')
 qqnorm(data)

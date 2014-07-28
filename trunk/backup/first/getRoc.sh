@@ -23,7 +23,7 @@ then
 fi
 sortFile=sorted$RANDOM
 # be careful about the column of score
-sort -k5 -gr $file >$sortFile
+sort -k4 -gr $file >$sortFile
 echo $cell$suffix.tab
 for ((i=1;i<=10;i++)) do
     now=`echo $one*$i|bc`

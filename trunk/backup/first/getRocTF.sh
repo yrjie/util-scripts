@@ -1,6 +1,8 @@
 if [ $# -lt 4 ]
 then
     echo "Usage: peakfile cell TFfile suffix"
+    echo -e "\tplot the ROC against TF, using the combined TF file"
+    echo -e "\tNow the 4th row is used"
     exit
 fi
 
@@ -27,7 +29,7 @@ max1=100000 # for Faire
 #fi
 sortFile=sorted$RANDOM
 # be careful about the column of score
-sort -k5 -gr $file >$sortFile
+sort -k4 -gr $file >$sortFile
 numP=`wc -l $TFfile |cut -d' ' -f1`
 numN=`wc -l $shuffled |cut -d' ' -f1`
 for ((i=1;i<=10;i++)) do
