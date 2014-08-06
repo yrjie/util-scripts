@@ -10,6 +10,8 @@ x=dat[,1]
 if (length(args)>=6){
 	y=as.matrix(read.table(args[6],sep='\t'))[,1]
 } else y=dat[,2]
+x=as.numeric(x)
+y=as.numeric(y)
 png(outfile)
 plot(x,y,xlab='regionVal',ylab='validation',lty=1)
 title('validation-regionVal correlation')

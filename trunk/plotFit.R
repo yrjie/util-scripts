@@ -1,7 +1,7 @@
 Args<-commandArgs()
 if (length(Args)<6){
 	print("Usage: R --no-save --slave --args infile type [outfile]")
-	print('Type should be one of: "beta", "cauchy", "chi-squared", "exponential", "f", "gamma", "geometric", "log-normal", "lognormal", "logistic", "negative binomial", "normal", "Poisson", "t" and "weibull"')
+	print('Type should be one of: "beta", "cauchy", "chi-squared", "exponential", "f", "gamma", "geometric", "log-normal", "lognormal", "logistic", "negative binomial", "normal", "poisson", "t" and "weibull"')
         q()
 }
 
@@ -14,8 +14,9 @@ remove_outliers <- function(x, na.rm = TRUE, ...) {
   qnt <- quantile(x, probs=c(.25, .75), na.rm = na.rm, ...)
   H <- 5 * IQR(x, na.rm = na.rm)
   y <- x
-  y[x < (qnt[1] - H)] <- qnt[1] - H
-  y[x > (qnt[2] + H)] <- qnt[2] + H
+#  y[x < (qnt[1] - H)] <- qnt[1] - H
+#  y[x > (qnt[2] + H)] <- qnt[2] + H
+  y=y[x >= (qnt[1] - H) & x <= (qnt[2] + H)]
   y
 }
 
@@ -41,7 +42,7 @@ if (length(grep(type,"normal"))>0)
 if (length(grep(type,"gamma"))>0)
 	yfit<-dgamma(xfit,shape=fit$estimate[1],rate=fit$estimate[2])
 if (length(grep(type,"poisson"))>0)
-	yfit<-dpois(xfit,lambda=fit$estimate[1])
+	yfit<-dpois(as.integer(xfit),lambda=fit$estimate[1])
 if (length(grep(type,"weibull"))>0)
 	yfit<-dweibull(xfit,shape=fit$estimate[1],scale=fit$estimate[2])
 if (length(grep(type,"cauchy"))>0)
