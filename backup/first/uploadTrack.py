@@ -8,7 +8,7 @@ if len(sys.argv)<2:
     print 'example (tab-delimited):\n\t/tmp/test.bw bigWig hg19 TestLib_0 test1S test1L {"assembly":"hg19"} http://biogpu.d1.comp.nus.edu.sg:8003/'
     print '\nNote:'
     print '1. the file should be accessible to BCS'
-    print '2. supported formats: bed3-12, bigWig, bigBed, vcf, psl, bam, encodeNarrowPeak, encodeBroadPeak'
+    print '2. supported formats: bed3-12, bigWig, bigBed, vcf, psl, bam, encodeNarrowPeak, encodeBroadPeak, chiapet.itx, pair.cluster'
     print '3. multiple lines are allowed'
     print '4. create is the option for creating tracks\n\t(values: [0 - NO track creation, 1 - create the tracks], default: 1)'
     print '5. all lines starting with "#" will be ignored'
@@ -39,7 +39,7 @@ for line in fi:
     longL=temp[5]
     tags=temp[6]
     bcs=temp[7].strip('/')
-    if 'bed' in format or 'vcf' in format or 'psl' in format or 'encode' in format or 'chiapet.itx' in format:
+    if 'bed' in format or 'vcf' in format or 'psl' in format or 'encode' in format or 'chiapet.itx' or 'pair.cluster' in format:
     	driver='mysql_table'
     elif 'bigWig' in format:
     	driver='bigWig'
