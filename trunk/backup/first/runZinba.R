@@ -1,6 +1,6 @@
 args=commandArgs()
 if (length(args)<7){
-print("Usage: R --no-save --slave --args infile outputdir prefix <runZinba.R")
+print("Usage: R --no-save --slave --args bedfile outputdir prefix <runZinba.R")
 q()
 }
 

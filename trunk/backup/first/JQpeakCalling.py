@@ -224,14 +224,16 @@ def ConvertToBam():
 
         #print tmpName+"-bamTMP"
         os.system('samtools sort -m 10000000000 ' + tmpName+'.bam ' + tmpName+'_sorted')
-        os.system('samtools rmdup -s ' + tmpName+'_sorted.bam ' + tmpName+'_rmdup.bam')
-        toMergeTargets+=(tmpName+'_rmdup.bam ')
+        #os.system('samtools rmdup -s ' + tmpName+'_sorted.bam ' + tmpName+'_rmdup.bam')
+        #toMergeTargets+=(tmpName+'_rmdup.bam ')
+        toMergeTargets+=(tmpName+'_sorted.bam ')
         
         #call function to create .tags.unique for zz
-        PrintTagsUnique(tmpName+'_rmdup.bam')
+        #PrintTagsUnique(tmpName+'_rmdup.bam')
+        PrintTagsUnique(tmpName+'_sorted.bam')
         
         # cleanup
-        os.system('rm '+ tmpName+'.bam; rm '+tmpName+'_sorted.bam;')
+        #os.system('rm '+ tmpName+'.bam; rm '+tmpName+'_sorted.bam;')
         delayDelete.append(tmpName+'_rmdup.bam ')
         
     for tmpName in controlMappings_List:
@@ -244,14 +246,17 @@ def ConvertToBam():
             os.system('bedToBam -i ' + tmpName + ' -g ' + genome_length_path + ' > ' + tmpName +'.bam')
             
         os.system('samtools sort -m 10000000000 ' + tmpName+'.bam ' + tmpName+'_sorted')
-        os.system('samtools rmdup -s ' + tmpName+'_sorted.bam ' + tmpName+'_rmdup.bam')        
-        toMergeControls+=(tmpName+'_rmdup.bam ')
+        #os.system('samtools rmdup -s ' + tmpName+'_sorted.bam ' + tmpName+'_rmdup.bam')        
+        #toMergeControls+=(tmpName+'_rmdup.bam ')
+        toMergeControls+=(tmpName+'_sorted.bam ')
         
         #call function to create .tags.unique for zz
-        PrintTagsUnique(tmpName+'_rmdup.bam')
+        #PrintTagsUnique(tmpName+'_rmdup.bam')
+        PrintTagsUnique(tmpName+'_sorted.bam')
         
         # cleanup
-        os.system('rm '+ tmpName+'.bam; rm '+tmpName+'_sorted.bam;')
+        #os.system('rm '+ tmpName+'.bam; rm '+tmpName+'_sorted.bam;')
+        os.system('rm '+ tmpName+'.bam')
         delayDelete.append(tmpName+'_rmdup.bam ')
     
     #this line will merge the files!

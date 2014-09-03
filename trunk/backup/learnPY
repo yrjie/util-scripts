@@ -110,3 +110,11 @@ python install to local
 easy_install --prefix=/home/ruijie/ pylint
 easy_install --prefix=/home/ruijie/ statsmodels
 easy_install --install-dir=/home/ruijie/lib/python2.7/site-packages/ statsmodels
+
+
+if there is a list in the optional parameter, the parameter will keep changing each time the function is called
+def fun1(a=[]):
+     print a
+     a.append(33)
+
+

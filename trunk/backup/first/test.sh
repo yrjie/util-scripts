@@ -4,6 +4,8 @@ echo $# $*
 echo $@
 if [ $# -lt 2 ]
 then
-    echo 321
+    echo "lt 2"
+else
+    echo "not lt 2"
 fi
-echo "not lt 2"
+ls $2

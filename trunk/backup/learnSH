@@ -62,4 +62,9 @@ Aborted (core dumped)
 
 when sortting by string, use 'LC_ALL=C sort temp.txt'
 
+tr -s 'abc' '\t'
+transliterate all 'abc' into '\t', if multiple consecutive happens, just replace by one '\t'
 
+
+a=("321" "33 da" "aaa aa")
+need to use for ((i = 0; i < ${#a[@]}; i++))

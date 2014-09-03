@@ -3,5 +3,8 @@ then
     echo 'Usage: bedfile'
     exit
 fi
-awk '{if (NR==1) printf "len"; printf "\t"$3-$2}' $1 >temp.dat
-R --no-save --slave --args temp.dat <~/bin/plotBox.R
+
+tmpFile=tmp$RANDOM
+awk '{if (NR==1) printf "len"; printf "\t"$3-$2}' $1 >$tmpFile
+R --no-save --slave --args $tmpFile <~/bin/plotBox.R
+rm $tmpFile
