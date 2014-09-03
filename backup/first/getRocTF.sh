@@ -2,7 +2,7 @@ if [ $# -lt 4 ]
 then
     echo "Usage: peakfile cell TFfile suffix"
     echo -e "\tplot the ROC against TF, using the combined TF file"
-    echo -e "\tNow the 4th row is used"
+    echo -e "\tNow the 4th column is used"
     exit
 fi
 
@@ -17,10 +17,10 @@ num=`wc -l $file |cut -d' ' -f1`
 one=`echo $num/10 |bc`
 
 echo $cell$suffix.tab
-#max1=10000 # for ATAC under DFilter
+max1=3000 # for ATAC under DFilter
 #max1=20000 # for ATAC
 #max1=50000 # for ATAC_low
-max1=100000 # for Faire
+#max1=100000 # for Faire
 #max1=200000 # for Faire
 
 #if [ $max1 -lt $one ]

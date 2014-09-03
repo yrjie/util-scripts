@@ -14,4 +14,4 @@ cp ~/studio/learn* ~/bin/backup/
 #find ~/ -name *.R -path ~/bin -prune -o -exec cp {} ~/bin/backup/all/ \;
 cd ~/bin
 svn add backup/*
-svn commit * -m \'$1\'
+#svn commit -m \'$1\'

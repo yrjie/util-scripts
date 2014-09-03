@@ -1,5 +1,6 @@
 import sys,os
 import getpass
+import json
 from urllib import quote
 
 if len(sys.argv)<2:
@@ -39,7 +40,8 @@ for line in fi:
     longL=temp[5]
     tags=temp[6]
     bcs=temp[7].strip('/')
-    if 'bed' in format or 'vcf' in format or 'psl' in format or 'encode' in format or 'chiapet.itx' or 'pair.cluster' in format:
+    if (format == 'bed'): format='bed12'
+    if 'bed' in format or 'vcf' in format or 'psl' in format or 'encode' in format or 'chiapet.itx' in format or 'pair.cluster' in format:
     	driver='mysql_table'
     elif 'bigWig' in format:
     	driver='bigWig'
@@ -48,7 +50,13 @@ for line in fi:
     elif 'bigBed' in format:
     	driver='bigBed'
     else:
-    	continue
+    	print "Unknown format"
+	print "Supported formats are:"
+	print "  bed3-12, bigWig, bigBed, vcf, psl, bam, encodeNarrowPeak, encodeBroadPeak, chiapet.itx, pair.cluster"
+    	sys.exit(1)
+    t2 = json.loads(tags)
+    t2['name'] = os.path.basename(file)
+    tags = json.dumps(t2,separators=(',', ':'))
     hook='http://biogpu.d1.comp.nus.edu.sg/basic2/reqbin/?asm='+asm+'&lib='+lib+'&track='+trkName+'&shortLabel='+shortL+'&longLabel='+longL+'&user='+user+'&bcs='+bcs+'&create='+create
     #hook='http://biogpu.d1.comp.nus.edu.sg:8001/reqbin/?asm='+asm+'&lib='+lib+'&track='+trkName+'&shortLabel='+shortL+'&longLabel='+longL+'&user='+user+'&bcs='+bcs+'&create='+create
     if file.startswith('http') or file.startswith('ftp'):
@@ -59,7 +67,7 @@ for line in fi:
     	cmd='curl --user '+user+':'+pwd+' -F \'tags='+tags+'\' -F \'format='+format+'\' -F \'input=upload://xxxfile\' -F xxxfile=@\"' + file + '\" -F \'hook='+hook+'\' -X POST '+bcs+'/create/'+driver+'/'
     	#cmd='curl --user '+user+':'+pwd+' -F \'tags='+tags+'\' -F \'format='+format+'\' -F \'input=file://'+file+'\' -F \'hook='+hook+'\' -X POST '+bcs+'/create/'+driver+'/'
 #    curL -F 'tags={"assembly":"hg19"}' -F 'format=bigWig' -F 'importmode=remote' -F 'input=http://www.somewhere.com/path/file.bigWig' -X POST http://biogpu.ddns.comp.nus.edu.sg:8002/create/bigWig/
-
-#    print cmd
+#    print driver
+    print cmd
     os.system(cmd)
 fi.close()
