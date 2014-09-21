@@ -23,14 +23,15 @@ if ("sumNorm" %in% args)
 #print(length(dat[dat<mean(dat)]))
 #dat=(dat-mean(dat))/sd(dat)
 dat=remove_outliers(dat)
+dat=dat[,order(colnames(dat))]
 dDat=dim(dat)
 print(dDat)
-png(outfile, width=max(1200,30*dDat[2]), height=max(1200,30*dDat[2]))
+png(outfile, width=max(1200,30*dDat[2]), height=max(1200,30*dDat[1]))
 sc="none"
 if ("rowNorm" %in% args)
 	sc="row"
-#heatmap.2(dat, dendrogram="col", col=bluered(256), scale=sc, key=T, keysize=0.8, density.info="none", trace="none",cexCol=2.3,  margins=c(20,5),Rowv=FALSE)
-heatmap.2(dat, dendrogram="row", col=bluered(256), scale=sc, key=T, keysize=0.8, density.info="none", trace="none",cexCol=2.3, labRow=NA, margins=c(20,5),Colv=FALSE)
+heatmap.2(dat, dendrogram="none", col=greenred(256), scale=sc, key=T, keysize=0.8, density.info="none", trace="none",cexCol=2, cexRow=2,  margins=c(20,20),Rowv=FALSE,Colv=FALSE)
+#heatmap.2(dat, dendrogram="row", col=bluered(256), scale=sc, key=T, keysize=0.8, density.info="none", trace="none",cexCol=2.3, labRow=NA, margins=c(20,5),Colv=FALSE)
 #heatmap.2(dat, dendrogram="none", col=bluered(256), scale=sc, key=T, keysize=0.8, density.info="none", trace="none",cexCol=2.3, labRow=NA, labCol=NA, margins=c(20,5),Colv=FALSE, Rowv=FALSE)
 #clustering: Colv Rowv
 dev.off()

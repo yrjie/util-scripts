@@ -26,5 +26,7 @@ data=remove_outliers(data)
 png(outfile)
 opar=par(ps=18)
 hist(data,breaks=50,main="",col='red',xlab="x value", ylab="Counting")
-mtext(paste(outfile),side=3,line=0,cex=2)
+if (length(Args)>5){
+	mtext(paste(outfile),side=3,line=0,cex=2)
+}
 dev.off()
