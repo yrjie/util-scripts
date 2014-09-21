@@ -21,7 +21,7 @@ prefix=$1
 sh callPeakhg19.sh $prefix.cfg
 
 samtools view $prefix/*COMBINED.bam |LC_ALL=C sort -k1 >$prefix/$prefix"Tag.sam"
-python sam2map.py $prefix/$prefix"Tag.sam" > $prefix/$prefix.map
+python sam2mapBig.py $prefix/$prefix"Tag.sam" > $prefix/$prefix.map
 
 python ~/chiapet-pipeline-r261/src/python/main/chiapet.py --asm hg19 --target POLII --lib $prefix --database chiapetdb --group-id $prefix --run 1-8 $prefix/$prefix".map"
 

@@ -22,4 +22,5 @@ ylimit = max(y)*1.1
 png(outfile, width=max(450,30*length(x)), height=max(450,30*length(x)),units="px")
 par(mar=c(15,5,5,2))
 bp <- barplot(y,names.arg=x,ylim=c(0,ylimit),cex.names=1.5,col=rainbow(6),las=2)
+#bp <- barplot(y,names.arg=x,ylim=c(0,ylimit),cex.names=1.5,col='red',las=2)
 dev.off()
